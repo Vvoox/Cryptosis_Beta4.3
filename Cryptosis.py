@@ -14,7 +14,6 @@ from tkinter.ttk import *
 import webbrowser
 from subprocess import call
 
-
 root=Tk()
 root.title("Cryptosis")
 root.iconbitmap('icon.ico')
@@ -23,22 +22,19 @@ root.iconbitmap('icon.ico')
 
 height = root.winfo_screenheight()
 width = root.winfo_screenwidth()
-print(height)
-print(width)
 canvas1 = Canvas(root, width=width, height=height-100)
 print("\n width x height = %d x %d (in pixels)\n" %(width, height))
 height1=canvas1.winfo_screenheight()
 width1=canvas1.winfo_screenwidth()
 
-print(height1)
-print(width1)
  #The (250, 250) is (height, width)
  # convert to PhotoImage
 # image.pack() # canvas objects do not use pack() or grid()
 
-img = PhotoImage(file="cry.ppm")
+img = PhotoImage(file="cry1.ppm")
+
   # PIL solution
-canvas1.create_image(width/4,40, anchor=NW, image=img)
+canvas1.create_image(width/4,5, anchor=NW, image=img)
 
 menu = Menu(root)
 root.config(menu=menu)
@@ -68,11 +64,11 @@ output="Outputs"
 #text.tag_config("Write Here", background="yellow", foreground="black")
 #text.tag_config("Click Here", background="black", foreground="white")
 
-text = Text(root, height=height/95, width=60)
+text = Text(root, height=height/120, width=60)
 #text.tag_config("Write Here")
 input1="Insert your text here...or browse your file"
 text.insert(INSERT,input1)
-canvas1.create_window(width/2.6, height-600, window=text)
+canvas1.create_window(width/2.2, height/2, window=text)
 
 def Contact():
 
@@ -562,39 +558,39 @@ root.config(menu=menubar)
 #------------------------------------------------------------------------------------------------------
 text1= Text(root, height=1, width=5)
 text1.insert(INSERT, "INPUT")
-canvas1.create_window(width/4.5, 400, window=text1)
+canvas1.create_window(width/6, height/2, window=text1)
 
 
 
 text1= Text(root, height=1, width=6)
 text1.insert(INSERT, "OUTPUT")
-canvas1.create_window(width/4.5, 600, window=text1)
+canvas1.create_window(width/6, height/1.5, window=text1)
 
-text1 = Text(root, height=height/95, width=60)
+text1 = Text(root, height=height/120, width=60)
 text1.insert(INSERT, output)
-canvas1.create_window(width/2.6, height-400, window=text1)
+canvas1.create_window(width/2.2, height/1.5, window=text1)
 
 
 #Buttons------------------------------------------------------------------------------------------------
 
 button2 = Button(root, text='   Browse  ', command=set_filename )
-canvas1.create_window(width/1.6, height/2.55, window=button2)
+canvas1.create_window(width/1.6, height/2, window=button2)
 
 
 button3 = Button(root, text='  Crypt  ', command=Crypt)
-canvas1.create_window(width/1.6, height/2.35, window=button3)
+canvas1.create_window(width/1.6, height/1.9, window=button3)
 
 button4 = Button(root, text='  Decrypt  ', command=Decrypt )
-canvas1.create_window(width/1.6, height/2.15, window=button4)
+canvas1.create_window(width/1.6, height/1.8, window=button4)
 
 button1 = Button(root, text='  EXIT  ', command=ExitApplication )
-canvas1.create_window(width/1.6, height/2, window=button1)
-
-button1 = Button(root, text='  Copy  ', command=Copy)
 canvas1.create_window(width/1.6, height/1.7, window=button1)
 
+button1 = Button(root, text='  Copy  ', command=Copy)
+canvas1.create_window(width/1.6, height/1.6, window=button1)
+
 button1 = Button(root, text='  Share  ', command=Share )
-canvas1.create_window(width/1.6, height/1.55, window=button1)
+canvas1.create_window(width/1.6, height/1.5, window=button1)
 
 #button3 = Button(root, text='  Modify IDs  ', command=openexcel )
 #canvas1.create_window(500, 900, window=button3)
