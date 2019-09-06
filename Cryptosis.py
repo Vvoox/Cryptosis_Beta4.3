@@ -214,7 +214,7 @@ def Crypt():
     output +="Base64 = " + encodedStr +"\n"+ "\n"
 
     #HEX-------------------------------------------------------------------------------------------
-    output += "HEX = ...SOON" +"\n"+ "\n"
+    #output += "HEX = ...SOON" +"\n"+ "\n"
 
 
 
@@ -253,22 +253,22 @@ def Crypt():
             if input1[i]==Alphabet1[j]:
 
                 if j+key<=25 :
-                    output_cesar += Alphabet1[j+key]
+                    output_cesar += Alphabet1[j+key ]
                 else :
                     X=25-j
                     Y=key-X
-                    output_cesar += Alphabet1[Y-1]
+                    output_cesar += Alphabet1[Y]
 
 
             if input1[i]==Alphabet2[j]:
 
                 if j + key <= 25 :
 
-                    output_cesar += Alphabet1[j + key-1]
+                    output_cesar += Alphabet1[j + key ]
                 else :
                     X = 25 - j
                     Y = key - X -1
-                    output_cesar += Alphabet1[Y-1]
+                    output_cesar += Alphabet1[Y]
 
             if input1[i]==numbers[j]:
                 output_cesar+=numbers[j]
@@ -599,7 +599,7 @@ canvas1.create_window(width/1.6, height/1.55, window=button1)
 #button3 = Button(root, text='  Modify IDs  ', command=openexcel )
 #canvas1.create_window(500, 900, window=button3)
 
-w = Label(root, text='Crisis.com | ©2020')
+w = Label(root, text='Khalil | ©2020')
 
 
 
