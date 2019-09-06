@@ -337,7 +337,7 @@ def Crypt():
 
 
 
-    #-----------------------------------------------------------------------------------------------
+    #output_Encryption-----------------------------------------------------------------------------------------------
     with open("output.txt", "w") as f1:
         for line in output:
             f1.write(line)
@@ -347,33 +347,80 @@ def Crypt():
     #messagebox.showinfo("Info", "Your outputs is saved in output.txt , you'll find it in your Cryptosis file.")
 
 
-
+#--------------------------------------------------------------------------------------------------
 
 def Decrypt() :
-    try :
+    decrypt_output = ""
 
+    try :
+        # ASCII------------------------------------------------------------------------------------
         decodedMessage = ""
         input = text.get("1.0", END)
 
         for item in input.split() :
             decodedMessage += chr(int(item))
-            output = "ASCII to Plaintext =  " + decodedMessage + "\n"
-            print(decodedMessage)
-            text1.delete('1.0', END)
-            text1.insert(INSERT, output)
+            decrypt_output = "ASCII to Plaintext =  " + decodedMessage + "\n"+"\n"
+            #print(decodedMessage)
+            #text1.delete('1.0', END)
+            #text1.insert(INSERT, output)
+
+
+        text1.delete('1.0', END)
+        text1.insert(INSERT, decrypt_output)
+        with open("output.txt", "w") as f1 :
+            for line in output :
+                f1.write(line)
     except:
-         return Base64()
+         return Binary()
+
+
+         # Binary----------------------------------------------------------------------------------------
+def Binary():
+
+    try :
+        input1 = text.get("1.0", END)
+        decrypt_output = ""
+        code = ""
+        n=len(input1)
+        for i in range(n):
+            if input1[i]!=' ':
+                code+=input1[i]
+        s=code
+        X=''.join(chr(int(s[i * 8 :i * 8 + 8], 2)) for i in range(len(s) // 8))
+
+        decrypt_output = "Binary to Plaintext =  " + X + "\n" + "\n"
+        #for i in input :
+            #n = int(bits, 2)
+            #X += n.to_bytes((n.bit_length() + 7) // 8, 'big').decode()
+
+
+        text1.delete('1.0', END)
+        text1.insert(INSERT, decrypt_output)
+        with open("output.txt", "w") as f1 :
+            for line in output :
+                f1.write(line)
+
+    except:
+        return Base64()
+
+
 
             # Base64-------------------------------------------------------------------------------------
 def Base64():
+    decrypt_output = ""
 
     try:
         input = text.get("1.0", END)
         encodedBytes = base64.b64decode(input)
         decodedStr = str(encodedBytes, "utf-8")
-        output = "Base64 to Plaintext =  " + decodedStr
+        decrypt_output = "Base64 to Plaintext =  " + decodedStr+"\n"+"\n"
+        #text1.delete('1.0', END)
+        #text1.insert(INSERT, output)
+        #with open("output.txt", "w") as f1 :
+            #for line in output :
+               # f1.write(line)
         text1.delete('1.0', END)
-        text1.insert(INSERT, output)
+        text1.insert(INSERT, decrypt_output)
         with open("output.txt", "w") as f1 :
             for line in output :
                 f1.write(line)
@@ -382,6 +429,7 @@ def Base64():
         return Cesar()
 
 def Cesar():
+    decrypt_output = ""
     input1 = text.get("1.0", END)
     Alphabet1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     Alphabet2 = "abcdefghijklmnopqrstuvwxyz"
@@ -408,28 +456,29 @@ def Cesar():
             if input1[i] == Alphabet1[j] :
 
                 if j + key >= 0 :
-                    output_cesar += Alphabet1[j - key]
+                    output_cesar += Alphabet1[j - key ]
                 else :
                     X = 25 - j
                     Y = key - X
-                    output_cesar += Alphabet1[Y - 1]
+                    output_cesar += Alphabet1[Y -1]
 
             if input1[i] == Alphabet2[j] :
                 if j + key >= 0 :
-                    output_cesar += Alphabet1[j - key - 1]
+                    output_cesar += Alphabet1[j - key ]
                 else :
                     X = 25 - j
                     Y = key - X - 1
-                    output_cesar += Alphabet1[Y - 1]
+                    output_cesar += Alphabet1[Y-1]
 
             if input1[i] == numbers[j] :
                 output_cesar += numbers[j]
-    text1.delete('1.0', END)
-    output = "Cesar to Plaintext =  " + output_cesar +"\n"
-    text1.insert(INSERT, output)
-    with open("output.txt", "w") as f1 :
-        for line in output :
-            f1.write(line)
+    #text1.delete('1.0', END)
+    decrypt_output += "Cesar to Plaintext =  " + output_cesar +"\n"+"\n"
+    #text1.insert(INSERT, output)
+    #with open("output.txt", "w") as f1 :
+       # for line in output :
+           # f1.write(line)
+    #Morse_to_text-----------------------------------------------------------------------------------
 
     output_morse = ""
     input1 = text.get("1.0", END)
@@ -438,10 +487,9 @@ def Cesar():
     i = 0
     # while(i<n):
     ##i+=1
-    print(input1)
     x = input1.split()
     xx = len(x)
-    print(x)
+
     for i in range(xx) :
         if x[i] == '.' :
             output_morse += CODE1[0]
@@ -458,8 +506,14 @@ def Cesar():
                 if x[i] == CODE[j] :
                     output_morse += CODE[j - 1]
 
-    output = "Morse to Plaintext =  " + output_morse
-    text1.insert(INSERT, output)
+    decrypt_output += "Morse to Plaintext =  " + output_morse +"\n"+"\n"
+
+
+
+    #Output_decryption-----------------------------------------------------------------------------
+
+    text1.delete('1.0', END)
+    text1.insert(INSERT, decrypt_output)
     with open("output.txt", "w") as f1 :
         for line in output :
             f1.write(line)
